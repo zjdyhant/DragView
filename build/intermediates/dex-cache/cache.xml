@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0-alpha1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ed88e1f0c8fbf66e1da918545f0a6790f893bceb">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.0.0-alpha1_ee8e6d3edafff6cc92fddc2003bc8e7fdbb3c4cb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-alpha1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="9aaaea3a89040f8176f810c85e288fc74d5d1f12">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.0.0-alpha1_d32f2806ec0c5ec77cbed358a6b5e2af0893820b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0-alpha1/support-annotations-24.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="b8062546971a3d196343232a19a3c0016272ba47">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/support-annotations-24.0.0-alpha1_1d4482d36fd64918db5eb3e4af51c2b739dc5041.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="34c2f9b2a344e8a8d574245ab90c2bac5da31c89">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/instant-run_722fc433a29eaedf77f3edfde8fc43b9ff6221b1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0-alpha1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="a6af5beedc2e8c946abc3771525e2fed77439309">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.0.0-alpha1_39881d7c1b04139970dc916508cab92a6996f04a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0-alpha1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="9684c95278dc45a142d7de3db9e7e39aa520e1e0">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.0.0-alpha1_49ee5aa029d102e2f82a645f9c71d7c74553ecaf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-alpha1/jars/libs/internal_impl-24.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="e57fba0a2d57d3501d8f4ff44c23092978804845">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/internal_impl-24.0.0-alpha1_6369346ea944ab016b7ac58ee68d97f115393366.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hantao/androidpro/DragView/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="125a64266e3658291a233a698a89cc4e415a8719">
+        <dex dex="/Users/hantao/androidpro/DragView/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_096ebc653dd8f716322993c53ea91fe9563e0fc1.jar" />
+    </item>
+
+</items>
