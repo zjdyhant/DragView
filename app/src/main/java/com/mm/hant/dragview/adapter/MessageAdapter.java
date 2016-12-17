@@ -41,17 +41,23 @@ public class MessageAdapter extends SimpleBaseAdapter<MessageDate> {
         textViewMessage.setText(messageDate.getMessage());
         final DragTextView messageCount = holder.getView(R.id.txt_count);
         messageCount.setTextColor(0xffffffff);
+        //当未读消息数大于0的时候，显示messageCount
         if (!TextUtils.isEmpty(messageDate.getCount()) && Integer.parseInt(messageDate.getCount()) > 0) {
             messageCount.setVisibility(View.VISIBLE);
             messageCount.setText(Integer.parseInt(messageDate.getCount()) > 15 ? "99+" : messageDate.getCount());
         } else {
             messageCount.setVisibility(View.GONE);
         }
+        //点击messageCount的回调
         messageCount.setOnTouchDownListener(new DragTextView.OnTouchDownListener() {
             @Override
             public void onTouchDown(TextView textView) {
                 if (mListener != null) {
-                    mListener.onCountClick(convertView, messageCount,position);
+                    View view = (View) convertView.getParent();
+                    view.setEnabled(false);
+                    view.setClickable(false);
+                    view.setLongClickable(false);
+                    mListener.onCountClick(convertView, messageCount, position);
                 }
             }
         });

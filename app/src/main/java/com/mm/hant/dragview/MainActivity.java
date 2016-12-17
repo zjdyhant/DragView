@@ -34,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mDragView.setOnRemoveUnreadMessageListener(new DragView.OnRemoveUnreadMessageListener() {
             @Override
             public void onRemoveUnreadMessage(boolean isReset) {
-                mListView.setEnabled(true);
-                mListView.setClickable(true);
-                mListView.setLongClickable(true);
+                //手指从DragView抬起的回调。设置ListView可点击，根据isReset进行重置或remove未读消息的处理
                 if(isReset){
                     mTempTextView.setVisibility(View.VISIBLE);
                 }else{
@@ -52,18 +50,20 @@ public class MainActivity extends AppCompatActivity {
         mMessageAdapter = new MessageAdapter(this, message, new MessageAdapter.OnCountClickListener() {
             @Override
             public void onCountClick(View convertView, TextView messageCountTextView,int position) {
-                mListView.setEnabled(false);
-                mListView.setClickable(false);
-                mListView.setLongClickable(false);
+                //mListView不消费任何touch事件，将事件抛给DragView处理。
                 mTempTextView = messageCountTextView;
                 messageCountTextView.setVisibility(View.GONE);
-                mDragView.addMessageCountTextView(messageCountTextView,convertView.getTop());
+                mDragView.addMessageCountTextView(messageCountTextView,convertView);
                 mPosition = position;
             }
         });
         mListView.setAdapter(mMessageAdapter);
     }
 
+    /**
+     * 初始化消息实体。
+     * @return
+     */
     public List<MessageDate> getMessage() {
         List<MessageDate> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {

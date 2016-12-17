@@ -2,6 +2,7 @@ package com.mm.hant.dragview.entity;
 
 /**
  * Created by hantao on 16/12/11.
+ * the messageData entity
  */
 
 public class MessageDate {

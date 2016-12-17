@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -15,12 +16,18 @@ import android.widget.TextView;
 import com.mm.hant.dragview.R;
 
 
+
 /**
  * Created by hantao on 16/12/10.
+ * 主要责任：
+ * 1，当ListView的未读消息TextView被电击的时候，new一个未读消息TextView并add到界面上。
+ * 2，绘制小红点和连接两个圆的中间部分。中间部分通过二阶贝塞儿曲线绘制。
+ * 3，监听KeyEvent事件，当ACTION_UP的时候回调。
  */
 
 public class DragView extends FrameLayout {
 
+    private View mContainerView;
     private TextView mTextViewCount;
 
     private Paint mPaint;
@@ -60,14 +67,24 @@ public class DragView extends FrameLayout {
         mPath = new Path();
     }
 
-    public void addMessageCountTextView(TextView textView, int marginTop) {
+    /**
+     * 将ListView中点击的未读消息TextView传递进来，并通过textView和ListView的Item的getTop，来决定将要绘制的
+     * TextView的位置。
+     * @param textView ListView中点击的未读消息TextView
+     * @param containerView ListView的ItemView
+     */
+    public void addMessageCountTextView(TextView textView, View containerView) {
 
+        mContainerView = containerView;
         mTextViewCount = new TextView(getContext());
         ViewGroup.LayoutParams srcLayoutParams = textView.getLayoutParams();
+        //绘制圆的初始半径
         mSrcRadius = srcLayoutParams.width / 2;
+        //绘制圆的半径，根据移动距离 mRadius将会改变。
         mRadius = mSrcRadius;
+        //记录起点坐标
         mStartX = textView.getLeft();
-        mStartY = marginTop + textView.getTop();
+        mStartY = mContainerView.getTop() + textView.getTop();
         LayoutParams layoutParams = new LayoutParams(srcLayoutParams.width, srcLayoutParams.height);
         layoutParams.setMargins(mStartX, mStartY, 0, 0);
         mTextViewCount.setBackgroundResource(R.drawable.circle_red);
@@ -83,6 +100,7 @@ public class DragView extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        //计算当前点 到 初始点的距离
         float distance = (float) Math.sqrt(Math.pow(mActionMoveY - mActionDownY, 2) + Math.pow(mActionDownX - mActionMoveX, 2));
         mRadius = mSrcRadius - distance / 10;
         if (mRadius < 0) {
@@ -97,6 +115,7 @@ public class DragView extends FrameLayout {
         if (!mStopDrawCircle && mTextViewCount != null) {
             int centerX = mStartX + mSrcRadius;
             int centerY = mStartY + mSrcRadius;
+            //绘制中间的圆点
             canvas.drawCircle(centerX, centerY, mRadius, mPaint);
             float dx = (float) (mRadius * (Math.sin(Math.atan((mActionMoveY - centerY) / (mActionMoveX - centerX)))));
             float dy = (float) (mRadius * (Math.cos(Math.atan((mActionMoveY - centerY) / (mActionMoveX - centerX)))));
@@ -116,6 +135,7 @@ public class DragView extends FrameLayout {
             mPath.lineTo(x3, y3);
             mPath.quadTo(halfX, halfY, x4, y4);
             mPath.close();
+            //绘制中间黏性段
             canvas.drawPath(mPath, mPaint);
         }
     }
@@ -144,6 +164,10 @@ public class DragView extends FrameLayout {
                         mTextViewCount.setTranslationY(0);
                     }
                     if (mRemoveUnreadMessageListener != null) {
+                        View view = (View) mContainerView.getParent();
+                        view.setEnabled(true);
+                        view.setClickable(true);
+                        view.setLongClickable(true);
                         mRemoveUnreadMessageListener.onRemoveUnreadMessage(mCanReset);
                     }
                     mStopDrawCircle = false;
@@ -166,6 +190,9 @@ public class DragView extends FrameLayout {
     }
 
     public interface OnRemoveUnreadMessageListener {
+        /**
+         * 手指从屏幕抬起的回调。两种情况 1，红点未读消息重置 2，remove未读消息
+         */
         void onRemoveUnreadMessage(boolean isReset);
     }
 

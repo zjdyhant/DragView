@@ -7,6 +7,11 @@ import android.widget.TextView;
 
 /**
  * Created by hantao on 16/12/11.
+ * ListView的Item中 未读消息的TextView。
+ * 职责：获取action_down点击事件，进行回调。
+ * 重写原因：若在adapter中用普通的TextView 通过OnClickListener监听，将会消费掉down事件，
+ *         导致DragView无法获得action_down点击事件
+ *
  */
 
 public class DragTextView extends TextView {
